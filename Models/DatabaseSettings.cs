@@ -6,5 +6,6 @@
         public string? DatabaseName { get; set; }
         public string? CategoriesCollectionName { get; set; }
         public string? ProductsCollectionName { get; set; }
+        public string? TrainSchedulesCollectionName { get; set; }
     }
 }
