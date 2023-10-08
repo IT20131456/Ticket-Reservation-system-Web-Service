@@ -46,6 +46,8 @@ builder.Services.Configure<DatabaseSettings>(
 builder.Services.AddTransient<ICategoryService,CategoryService>();
 //resolving the ProductService dependency here
 builder.Services.AddTransient<IProductService,ProductService>();
+//resolving the TrainScheduleService dependency here
+builder.Services.AddTransient<ITrainScheduleService,TrainScheduleService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
