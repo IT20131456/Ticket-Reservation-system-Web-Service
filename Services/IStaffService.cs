@@ -4,10 +4,10 @@ namespace MongoDotnetDemo.Services
 {
     public interface IStaffService
     {
-        Task<IEnumerable<Staff>> GetAllAsyc();
+        Task<IEnumerable<Staff>> GetAllAsync();
         Task<Staff> GetByStaffIdAsync(string staffId);
-        Task CreateAsync(Staff Product);
-        Task UpdateAsync(string id, Staff Product);
+        Task CreateAsync(Staff staff);
+        Task UpdateAsync(string id, Staff staff);
         Task DeleteAsync(string id);
     }
 }

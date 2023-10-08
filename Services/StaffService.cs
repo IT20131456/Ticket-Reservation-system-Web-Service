@@ -18,7 +18,7 @@ namespace MongoDotnetDemo.Services
                 (dbSettings.Value.StaffCollectionName);
         }
 
-        public async Task<IEnumerable<Staff>> GetAllAsyc() =>
+        public async Task<IEnumerable<Staff>> GetAllAsync() =>
             await _staffCollection.Find(_ => true).ToListAsync();
 
         public async Task<Staff> GetByStaffIdAsync(string staffId) =>

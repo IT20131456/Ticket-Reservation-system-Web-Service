@@ -19,7 +19,7 @@ namespace MongoDotnetDemo.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var allStaff = await _staffService.GetAllAsyc();
+            var allStaff = await _staffService.GetAllAsync();
             return Ok(allStaff);
         }
 
@@ -85,8 +85,8 @@ namespace MongoDotnetDemo.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest loginRequest)
         {
-            // Now, you can access loginRequest.StaffId and loginRequest.Password
-            string staffId = loginRequest.StaffId;
+            // access loginRequest.StaffId and loginRequest.Password
+            string staffId = loginRequest.Id;
             string password = loginRequest.Password;
 
             // Retrieve the staff member by staffId from MongoDB
@@ -100,7 +100,7 @@ namespace MongoDotnetDemo.Controllers
                 {
                     // Password is correct; proceed with login
                     // Return a success response
-                    return Ok("Login successful"); // TODO: return a token or user information here
+                    return Ok(new { Message = "Login successful", Data = staffMember }); // TODO: return a token or user information here
                 }
             }
 

@@ -8,5 +8,6 @@
         public string? ProductsCollectionName { get; set; }
         public string? TrainSchedulesCollectionName { get; set; }
         public string? StaffCollectionName { get; set; }
+        public string? TravelAgentCollectionName { get; set; }
     }
 }

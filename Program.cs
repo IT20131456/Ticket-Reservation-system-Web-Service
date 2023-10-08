@@ -50,6 +50,8 @@ builder.Services.AddTransient<IProductService,ProductService>();
 builder.Services.AddTransient<ITrainScheduleService,TrainScheduleService>();
 //resolving the StaffService dependency here
 builder.Services.AddTransient<IStaffService, StaffService>();
+//resolving the TravelAgent dependency here
+builder.Services.AddTransient<ITravelAgentService, TravelAgentService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

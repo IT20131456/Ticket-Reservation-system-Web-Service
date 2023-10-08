@@ -1,12 +1,12 @@
-﻿using MongoDB.Bson;
+using MongoDB.Bson;
 using BCryptNet = BCrypt.Net.BCrypt;
 
 namespace MongoDotnetDemo.Models
 {
-    public class Staff
+    public class TravelAgent
     {
         public ObjectId Id { get; set; }
-        public required string StaffId { get; set; }
+        public required string RegNo { get; set; }
         public required string NIC { get; set; }
         public required string Name { get; set; } 
         public required string Email { get; set; }
