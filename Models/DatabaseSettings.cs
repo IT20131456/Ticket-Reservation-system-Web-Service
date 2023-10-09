@@ -7,5 +7,6 @@
         public string? CategoriesCollectionName { get; set; }
         public string? ProductsCollectionName { get; set; }
         public string? TrainSchedulesCollectionName { get; set; }
+         public string? TicketBookingCollectionName { get; set; }
     }
 }

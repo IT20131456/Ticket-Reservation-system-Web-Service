@@ -48,6 +48,8 @@ builder.Services.AddTransient<ICategoryService,CategoryService>();
 builder.Services.AddTransient<IProductService,ProductService>();
 //resolving the TrainScheduleService dependency here
 builder.Services.AddTransient<ITrainScheduleService,TrainScheduleService>();
+//resolving the TicketBookingService dependency here
+builder.Services.AddTransient<ITicketBookingService,TicketBookingService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
