@@ -142,6 +142,29 @@ namespace MongoDotnetDemo.Controllers
                 if (staffMember.VerifyPassword(password))
                 {
                     // Password is correct; proceed with login
+//                    // Generate a JWT token
+//                    byte[] userSpecificDataBytes = Encoding.UTF8.GetBytes(staffId + ":" +staffMember.NIC);
+//                    // Use SHA-256 to hash the user-specific data
+//                    using (SHA256 sha256 = SHA256.Create())
+//                    {
+//                        byte[] hashedData = sha256.ComputeHash(userSpecificDataBytes);
+//
+//                        // Use the hashed data as the key (it will be 256 bits long)
+//                        var key = new SymmetricSecurityKey(hashedData);
+//
+//                        var tokenOptions = new JwtSecurityToken(
+//                            issuer: "http://localhost:5041",
+//                            audience: "http://localhost:3000",
+//                            claims: new[] { new Claim(ClaimTypes.Name, staffMember.StaffId) }, 
+//                            expires: DateTime.UtcNow.AddMinutes(15), // Token expiration time
+//                            signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
+//                        );
+//
+//                        var token = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+//                        return Ok(new { Message = "Login successful", Token = token });
+//
+//                    }
+
                     // Return a success response
                     return Ok(new { Message = "Login successful", Data = staffMember }); // TODO: return a token or user information here
                 }
