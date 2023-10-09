@@ -18,7 +18,7 @@ namespace MongoDotnetDemo.Models
         public string to { get; set; }
         public string booking_date { get; set; }
         public string reservation_date { get; set; }    
-        public string ticket_class { get; set; }
+        public int ticket_class { get; set; }
         public int number_of_tickets { get; set; }
         public int total_price { get; set; }
     }
