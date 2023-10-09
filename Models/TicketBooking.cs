@@ -21,5 +21,7 @@ namespace MongoDotnetDemo.Models
         public int ticket_class { get; set; }
         public int number_of_tickets { get; set; }
         public int total_price { get; set; }
+
+         public string status { get; set; }
     }
 }
