@@ -35,5 +35,9 @@ namespace MongoDotnetDemo.Services
         public async Task DeleteAsync(string id) =>
             await _staffCollection.DeleteOneAsync(a => a.StaffId == id);
 
+        public async Task UpdateAsync(string id, UpdateDefinition<Staff> updateDefinition) =>
+            await _staffCollection
+                .UpdateOneAsync(a => a.StaffId == id, updateDefinition);
+
     }
 }

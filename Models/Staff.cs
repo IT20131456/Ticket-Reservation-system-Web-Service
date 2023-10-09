@@ -13,6 +13,7 @@ namespace MongoDotnetDemo.Models
         public required string MobileNumber { get; set; }
         public required string UserName { get; set; }
         public required string HashedPassword { get; set; }
+        public required bool IsAdmin { get; set; }
 
         // Hash the password and set the PasswordHash property
         public void SetPassword(string password)
