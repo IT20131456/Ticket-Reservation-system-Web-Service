@@ -66,8 +66,51 @@ namespace MongoDotnetDemo.Controllers
             var staff = await _staffService.GetByStaffIdAsync(id);
             if (staff == null)
                 return NotFound();
-            await _staffService.UpdateAsync(id, newStaff);
-            return Ok("updated successfully");
+
+            // Update only the specific fields of the staff object
+            var updatedFields = new List<UpdateDefinition<Staff>>();
+
+            if (!string.IsNullOrEmpty(newStaff.Name))
+            {
+                updatedFields.Add(Builders<Staff>.Update.Set(x => x.Name, newStaff.Name));
+            }
+
+            if (!string.IsNullOrEmpty(newStaff.Email))
+            {
+                updatedFields.Add(Builders<Staff>.Update.Set(x => x.Email, newStaff.Email));
+            }
+
+            if(!string.IsNullOrEmpty(newStaff.StaffId))
+            {
+                updatedFields.Add(Builders<Staff>.Update.Set(x => x.StaffId, newStaff.StaffId));
+            }
+
+            if(!string.IsNullOrEmpty(newStaff.UserName))
+            {
+                updatedFields.Add(Builders<Staff>.Update.Set(x => x.UserName, newStaff.UserName));
+            }
+
+            if(!string.IsNullOrEmpty(newStaff.MobileNumber))
+            {
+                updatedFields.Add(Builders<Staff>.Update.Set(x => x.MobileNumber, newStaff.MobileNumber));
+            }
+            
+            if (newStaff.IsAdmin != staff.IsAdmin)
+            {
+                updatedFields.Add(Builders<Staff>.Update.Set(x => x.IsAdmin, newStaff.IsAdmin));
+            }
+
+            if (updatedFields.Count > 0)
+            {
+                var updateDefinition = Builders<Staff>.Update.Combine(updatedFields);
+                await _staffService.UpdateAsync(id, updateDefinition);
+                var updatedStaff = await _staffService.GetByStaffIdAsync(id);
+                return Ok(new { Message = "Updated successfully", Data = updatedStaff });
+            }
+            else
+            {
+                return Ok(new { Message = "No fields to update", Data = new {} });
+            }
         }
 
         // DELETE api/Staff/{id}
@@ -99,6 +142,29 @@ namespace MongoDotnetDemo.Controllers
                 if (staffMember.VerifyPassword(password))
                 {
                     // Password is correct; proceed with login
+//                    // Generate a JWT token
+//                    byte[] userSpecificDataBytes = Encoding.UTF8.GetBytes(staffId + ":" +staffMember.NIC);
+//                    // Use SHA-256 to hash the user-specific data
+//                    using (SHA256 sha256 = SHA256.Create())
+//                    {
+//                        byte[] hashedData = sha256.ComputeHash(userSpecificDataBytes);
+//
+//                        // Use the hashed data as the key (it will be 256 bits long)
+//                        var key = new SymmetricSecurityKey(hashedData);
+//
+//                        var tokenOptions = new JwtSecurityToken(
+//                            issuer: "http://localhost:5041",
+//                            audience: "http://localhost:3000",
+//                            claims: new[] { new Claim(ClaimTypes.Name, staffMember.StaffId) }, 
+//                            expires: DateTime.UtcNow.AddMinutes(15), // Token expiration time
+//                            signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
+//                        );
+//
+//                        var token = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+//                        return Ok(new { Message = "Login successful", Token = token });
+//
+//                    }
+
                     // Return a success response
                     return Ok(new { Message = "Login successful", Data = staffMember }); // TODO: return a token or user information here
                 }
