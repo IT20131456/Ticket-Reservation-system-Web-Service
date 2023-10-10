@@ -37,7 +37,7 @@ namespace MongoDotnetDemo.Models
 
     
 
-    
+
 
     // Verify a password during login
     public bool VerifyPassword(string password)
