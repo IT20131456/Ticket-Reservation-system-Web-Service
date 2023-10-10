@@ -12,6 +12,9 @@ namespace MongoDotnetDemo.Services
         Task UpdateAsync(string id, Traveler traveler);
         Task DeleteAysnc(string id);
         Task DeleteByNIC(string nic);
+        Task UpdateByNic(string nic, Traveler traveler);
+        Task UpdateAsyncN(Traveler traveler);
+     
 
 
     }
