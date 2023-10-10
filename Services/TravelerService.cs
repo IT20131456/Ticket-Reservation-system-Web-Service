@@ -64,6 +64,16 @@ namespace MongoDotnetDemo.Services
             await _travelerCollection.DeleteOneAsync(filter);
         }
 
+        public async Task UpdateByNic(string nic, Traveler traveler) =>
+            await _travelerCollection
+                .ReplaceOneAsync(a => a.NIC == nic, traveler);
+
+
+        public async Task UpdateAsyncN(Traveler traveler)
+        {
+            var filter = Builders<Traveler>.Filter.Eq("_id", traveler.Id);
+            await _travelerCollection.ReplaceOneAsync(filter, traveler);
+        }
 
 
     }

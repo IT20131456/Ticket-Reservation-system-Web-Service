@@ -122,5 +122,72 @@ namespace MongoDotnetDemo.Controllers
             return Ok(new { Message = "Traveler deleted successfully." });
         }
 
+
+        // PUT api/traveler/nic/123456789
+        [HttpPut("nics/{nic}")]
+        public async Task<IActionResult> PutByNic(string nic, [FromBody] Traveler newTraveler)
+        {
+            var traveler = await _travelerService.GetByNIC(nic);
+            if (traveler == null)
+                return NotFound();
+
+            await _travelerService.UpdateByNic(nic, newTraveler);
+            return Ok("Updated successfully");
+        }
+
+
+
+        // PUT api/traveler/nic/{nic}
+        [HttpPut("nic/{nic}")]
+        public async Task<IActionResult> PutByN(string nic, [FromBody] Traveler updatedTraveler)
+        {
+            var traveler = await _travelerService.GetByNIC(nic);
+            if (traveler == null)
+                return NotFound();
+
+            // Update specific fields of the traveler
+            if (!string.IsNullOrEmpty(updatedTraveler.NIC))
+                traveler.NIC = updatedTraveler.NIC;
+
+            if (!string.IsNullOrEmpty(updatedTraveler.FullName))
+                traveler.FullName = updatedTraveler.FullName;
+
+            if (!string.IsNullOrEmpty(updatedTraveler.DOB))
+                traveler.DOB = updatedTraveler.DOB;
+
+            if (!string.IsNullOrEmpty(updatedTraveler.Gender))
+                traveler.Gender = updatedTraveler.Gender;
+
+            if (!string.IsNullOrEmpty(updatedTraveler.Contact))
+                traveler.Contact = updatedTraveler.Contact;
+
+            if (!string.IsNullOrEmpty(updatedTraveler.Email))
+                traveler.Email = updatedTraveler.Email;
+
+            if (!string.IsNullOrEmpty(updatedTraveler.Address))
+                traveler.Address = updatedTraveler.Address;
+
+            if (!string.IsNullOrEmpty(updatedTraveler.Username))
+                traveler.Username = updatedTraveler.Username;
+
+            if (!string.IsNullOrEmpty(updatedTraveler.Profile))
+                traveler.Profile = updatedTraveler.Profile;
+
+            if (!string.IsNullOrEmpty(updatedTraveler.TravelerType))
+                traveler.TravelerType = updatedTraveler.TravelerType;
+
+            if (!string.IsNullOrEmpty(updatedTraveler.AccountStatus))
+                traveler.AccountStatus = updatedTraveler.AccountStatus;
+
+            if (!string.IsNullOrEmpty(updatedTraveler.CreatedAt))
+                traveler.CreatedAt = updatedTraveler.CreatedAt;
+
+
+            await _travelerService.UpdateAsyncN(traveler);
+            return Ok("Updated successfully");
+        }
+
+
+
     }
 }
