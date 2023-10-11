@@ -8,7 +8,7 @@ namespace MongoDotnetDemo.Models
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
-        public string? NIC { get; set; }
+        public string NIC { get; set; }
         public string? FullName { get; set; }
         public string? DOB { get; set; }
 
