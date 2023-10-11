@@ -42,5 +42,9 @@ namespace MongoDotnetDemo.Services
         // Deletes a ticket booking by its unique identifier asynchronously.
         public async Task DeleteAsync(string id) =>
             await _ticketBookingCollection.DeleteOneAsync(a => a.Id == id);
+
+        public async Task<IEnumerable<TicketBooking>> GetByReferenceIdAsync(string referenceId) =>
+        await _ticketBookingCollection.Find(tb => tb.reference_id == referenceId).ToListAsync();
+
     }
 }
