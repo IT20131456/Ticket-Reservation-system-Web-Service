@@ -10,8 +10,12 @@
         public string? TravelersCollectionName { get; set; }     
 
         public string? TrainSchedulesCollectionName { get; set; }
+
+         public string? TicketBookingCollectionName { get; set; }
+
         public string? StaffCollectionName { get; set; }
         public string? TravelAgentCollectionName { get; set; }
+
 
     }
 }

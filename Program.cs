@@ -67,10 +67,15 @@ builder.Services.AddTransient<ITravelerService,TravelerService>();
 
 //resolving the TrainScheduleService dependency here
 builder.Services.AddTransient<ITrainScheduleService,TrainScheduleService>();
+
+//resolving the TicketBookingService dependency here
+builder.Services.AddTransient<ITicketBookingService,TicketBookingService>();
+
 //resolving the StaffService dependency here
 builder.Services.AddTransient<IStaffService, StaffService>();
 //resolving the TravelAgent dependency here
 builder.Services.AddTransient<ITravelAgentService, TravelAgentService>();
+
 
 var app = builder.Build();
 
