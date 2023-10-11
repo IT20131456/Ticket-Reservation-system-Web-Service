@@ -26,7 +26,11 @@ namespace MongoDotnetDemo.Services
         // Deletes a ticket booking by its unique identifier asynchronously.
         Task DeleteAsync(string id);
 
+
+        Task<IEnumerable<TicketBooking>> GetByReferenceIdAsync(string referenceId);
+
         // Retrieves a specific ticket booking by its unique identifier asynchronously.
         Task<IEnumerable<TicketBooking>> GetAllByRefId(string nic);
+
     }
 }
