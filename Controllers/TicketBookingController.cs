@@ -83,11 +83,28 @@ namespace MongoDotnetDemo.Controllers
         }
 
 
+
         // GET: api/TicketBooking/{nic}
         [HttpGet("nic/{nic}")]
         public async Task<ActionResult<IEnumerable<TicketBooking>>> GetByNic(string nic)
         {
             var ticketBookings = await _ticketBookingService.GetByReferenceIdAsync(nic);
+            return Ok(ticketBookings);
+        }
+
+
+        // GET: api/TicketBooking/History/{nic}
+        [HttpGet("History/{nic}")]
+        public async Task<ActionResult<IEnumerable<TicketBooking>>> GetByNIC(string nic)
+        {
+           
+            var ticketBookings = await _ticketBookingService.GetAllByRefId(nic);   
+       
+            if (ticketBookings == null)
+            {
+                return NotFound();
+            }
+
             return Ok(ticketBookings);
         }
 
