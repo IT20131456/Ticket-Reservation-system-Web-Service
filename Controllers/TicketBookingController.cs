@@ -81,5 +81,20 @@ namespace MongoDotnetDemo.Controllers
 
             return Ok("Ticket booking deleted successfully");
         }
+
+        // GET: api/TicketBooking/History/{nic}
+        [HttpGet("History/{nic}")]
+        public async Task<ActionResult<IEnumerable<TicketBooking>>> GetByNIC(string nic)
+        {
+           
+            var ticketBookings = await _ticketBookingService.GetAllByRefId(nic);   
+       
+            if (ticketBookings == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(ticketBookings);
+        }
     }
 }
