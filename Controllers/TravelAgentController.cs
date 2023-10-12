@@ -113,6 +113,7 @@ namespace MongoDotnetDemo.Controllers
             // access loginRequest.Id and loginRequest.Password
             string regNo = loginRequest.Id;
             string password = loginRequest.Password;
+            //Console.WriteLine("Login request received for " + regNo);
 
             // Retrieve the agent by RegNo from MongoDB
             var agent = await _travelAgentService.GetByAgentIdAsync(regNo);
@@ -125,6 +126,7 @@ namespace MongoDotnetDemo.Controllers
                 {
                     // Password is correct; proceed with login
                     // Return a success response
+                    //Console.WriteLine("Login successful");
                     return Ok(new { Message = "Login successful", Data = agent }); // return a token or user information
                 }
             }

@@ -43,8 +43,14 @@ namespace MongoDotnetDemo.Services
         public async Task DeleteAsync(string id) =>
             await _ticketBookingCollection.DeleteOneAsync(a => a.Id == id);
 
+
+        public async Task<IEnumerable<TicketBooking>> GetByReferenceIdAsync(string referenceId) =>
+        await _ticketBookingCollection.Find(tb => tb.reference_id == referenceId).ToListAsync();
+
+
         // Retrieves specific ticket bookings by reference ID.
         public async Task<IEnumerable<TicketBooking>> GetAllByRefId(string nic) =>
             await _ticketBookingCollection.Find(a => a.reference_id == nic).ToListAsync();
+
     }
 }
