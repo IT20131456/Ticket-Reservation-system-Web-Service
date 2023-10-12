@@ -1,10 +1,8 @@
 ﻿// ----------------------------------------------------------------------------
 // File: ITravelAgentService.cs
 // Author: IT20125202
-// Created: 2023-10-09
-// Description: This file defines the ITravelAgentService interface, which specifies the contract
-// for interacting with travel agent-related data and operations. Implementations of this interface
-// provide methods for retrieving travel agents, creating, updating, and deleting agent records.
+// Description: Defines the ITravelAgentService interface, which specifies the contract for interacting with travel agent-related data and operations. 
+//              Provide methods for retrieving travel agents, creating, updating, and deleting agent records.
 // ----------------------------------------------------------------------------
 
 using MongoDotnetDemo.Models;

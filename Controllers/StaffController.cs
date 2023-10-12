@@ -1,10 +1,8 @@
 ﻿// ----------------------------------------------------------------------------
 // File: StaffController.cs
 // Author: IT20125202
-// Created: 2023-10-09
-// Description: This file contains the implementation of the StaffController class,
-// which handles staff-related operations such as listing staff members, adding new staff members,
-// updating staff information, deleting staff members, and handling staff member login.
+// Description: Controller class to handle staff-related operations such as listing staff members, adding new staff members, 
+//              updating staff information, deleting staff members, and handling staff member login.
 // Version: 1.0.0
 // Route: /api/Staff
 // ----------------------------------------------------------------------------

@@ -1,11 +1,9 @@
 ﻿// ----------------------------------------------------------------------------
 // File: Staff.cs
 // Author: IT20125202
-// Created: 2023-10-09
-// Description: This file defines the Staff class, which represents the structure
-// of a staff member in the system. It contains properties for unique identifiers (StaffId, NIC),
-// personal information (Name, Email, MobileNumber), user credentials (UserName, HashedPassword),
-// and admin privileges (IsAdmin). The class also provides methods to hash and verify passwords.
+// Description: Class to represent the structure of a staff member in the system. It contains properties for unique identifiers (StaffId, NIC),
+//              personal information (Name, Email, MobileNumber), user credentials (UserName, HashedPassword), and admin privileges (IsAdmin). 
+//              Provides methods to hash and verify passwords.
 // ----------------------------------------------------------------------------
 
 using MongoDB.Bson;

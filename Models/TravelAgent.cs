@@ -1,11 +1,9 @@
 // ----------------------------------------------------------------------------
 // File: TravelAgent.cs
 // Author: IT20125202
-// Created: 2023-10-09
-// Description: This file defines the TravelAgent class, which represents the structure
-// of a travel agent in the system. It contains properties for unique identifiers (RegNo, NIC),
-// personal information (Name, Email, MobileNumber), and user credentials (UserName, HashedPassword).
-// The class also provides methods to hash and verify passwords.
+// Description: Class to represent the structure of a travel agent in the system. It contains properties for unique identifiers (RegNo, NIC),
+//              personal information (Name, Email, MobileNumber), and user credentials (UserName, HashedPassword).
+//              Provides methods to hash and verify passwords.
 // ----------------------------------------------------------------------------
 
 using MongoDB.Bson;
