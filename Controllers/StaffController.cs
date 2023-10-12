@@ -1,4 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿// ----------------------------------------------------------------------------
+// File: StaffController.cs
+// Author: IT20125202
+// Created: 2023-10-09
+// Description: This file contains the implementation of the StaffController class,
+// which handles staff-related operations such as listing staff members, adding new staff members,
+// updating staff information, deleting staff members, and handling staff member login.
+// Version: 1.0.0
+// Route: /api/Staff
+// ----------------------------------------------------------------------------
+
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.ObjectPool;
 using MongoDB.Driver;
 using MongoDotnetDemo.Models;
@@ -19,6 +30,7 @@ namespace MongoDotnetDemo.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
+            // Retrieve all staff members from the database
             var allStaff = await _staffService.GetAllAsync();
             return Ok(allStaff);
         }
@@ -27,10 +39,11 @@ namespace MongoDotnetDemo.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(string id)
         {
+            // Retrieve a staff member by ID from the database
             var staff = await _staffService.GetByStaffIdAsync(id);
             if (staff == null)
             {
-                return NotFound();
+                return NotFound(); // Return a not found response if the staff member is not found
             }
             return Ok(staff);
         }
@@ -39,7 +52,6 @@ namespace MongoDotnetDemo.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(Staff staff)
         {
-            // TODO: Add the validations to username
             // Check if a user with the same StaffId already exists
             var existingStaff = await _staffService.GetByStaffIdAsync(staff.StaffId);
             if (existingStaff != null)
@@ -48,11 +60,19 @@ namespace MongoDotnetDemo.Controllers
                 return Conflict("Staff ID already exists.");
             }
 
+            // Check if a user with the same username already exists
+            var existingStaffByUsername = await _staffService.GetByUsernameAsync(staff.UserName);
+            if (existingStaffByUsername != null)
+            {
+                // A user with the same username already exists; return a conflict response
+                return Conflict("Username already exists.");
+            }
+
             // Hash the password
             var password = staff.HashedPassword;
             staff.SetPassword(password);
 
-            // Create the new staff member
+            // Create the new staff member in the database
             await _staffService.CreateAsync(staff);
 
             // Return a success response
@@ -63,9 +83,10 @@ namespace MongoDotnetDemo.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(string id, [FromBody] Staff newStaff)
         {
+            // Retrieve the existing staff member by ID
             var staff = await _staffService.GetByStaffIdAsync(id);
             if (staff == null)
-                return NotFound();
+                return NotFound(); // Return not found if the staff member is not found
 
             // Update only the specific fields of the staff object
             var updatedFields = new List<UpdateDefinition<Staff>>();
@@ -104,6 +125,8 @@ namespace MongoDotnetDemo.Controllers
             {
                 var updateDefinition = Builders<Staff>.Update.Combine(updatedFields);
                 await _staffService.UpdateAsync(id, updateDefinition);
+                
+                // Retrieve the updated staff member
                 var updatedStaff = await _staffService.GetByStaffIdAsync(id);
                 return Ok(new { Message = "Updated successfully", Data = updatedStaff });
             }
@@ -117,10 +140,14 @@ namespace MongoDotnetDemo.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
+            // Retrieve the staff member by ID
             var staff = await _staffService.GetByStaffIdAsync(id);
             if (staff == null)
-                return NotFound();
+                return NotFound(); // Return not found if the staff member is not found
+            
+            // Delete the staff member from the database
             await _staffService.DeleteAsync(id);
+
             return Ok("deleted successfully");
         }
 
@@ -128,7 +155,7 @@ namespace MongoDotnetDemo.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest loginRequest)
         {
-            // access loginRequest.StaffId and loginRequest.Password
+            // Access loginRequest.StaffId and loginRequest.Password
             string staffId = loginRequest.Id;
             string password = loginRequest.Password;
 
@@ -165,8 +192,8 @@ namespace MongoDotnetDemo.Controllers
 //
 //                    }
 
-                    // Return a success response
-                    return Ok(new { Message = "Login successful", Data = staffMember }); // TODO: return a token or user information here
+                    // Return a success response when password is correct
+                    return Ok(new { Message = "Login successful", Data = staffMember }); // return a token or user information
                 }
             }
 
