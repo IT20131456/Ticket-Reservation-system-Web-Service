@@ -1,4 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿// ----------------------------------------------------------------------------
+// File: TravelAgentController.cs
+// Author: IT20125202
+// Created: 2023-10-09
+// Description: This file contains the implementation of the TravelAgentController class,
+// which handles travel agent-related operations such as listing travel agents, adding new agents,
+// updating agent information, deleting agents, and handling agent login.
+// Version: 1.0.0
+// Route: /api/TravelAgent
+// ----------------------------------------------------------------------------
+
+using Microsoft.AspNetCore.Mvc;
 using MongoDotnetDemo.Models;
 using MongoDotnetDemo.Services;
 
@@ -18,6 +29,7 @@ namespace MongoDotnetDemo.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
+            // get all agent details from database
             var allAgents = await _travelAgentService.GetAllAsync();
             return Ok(allAgents);
         }
@@ -26,6 +38,7 @@ namespace MongoDotnetDemo.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(string id)
         {
+            // get a specific agent details using registration number
             var agent = await _travelAgentService.GetByAgentIdAsync(id);
             if (agent == null)
             {
@@ -38,13 +51,20 @@ namespace MongoDotnetDemo.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(TravelAgent travelAgent)
         {
-            // TODO: Add the validations to username
             // Check if a user with the same RegNo already exists
             var existingTravelAgent = await _travelAgentService.GetByAgentIdAsync(travelAgent.RegNo);
             if (existingTravelAgent != null)
             {
                 // A user with the same RegNo already exists; return a conflict response
                 return Conflict("Registration Number already exists.");
+            }
+
+            // Check if a user with the same username already exists
+            var existingAgentByUsername = await _travelAgentService.GetByUsernameAsync(travelAgent.UserName);
+            if (existingAgentByUsername != null)
+            {
+                // A user with the same username already exists; return a conflict response
+                return Conflict("Username already exists.");
             }
 
             // Hash the password
@@ -62,9 +82,12 @@ namespace MongoDotnetDemo.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(string id, [FromBody] TravelAgent newAgent)
         {
+            // get the user by registration number
             var agent = await _travelAgentService.GetByAgentIdAsync(id);
             if (agent == null)
                 return NotFound();
+
+            // update the user
             await _travelAgentService.UpdateAsync(id, newAgent);
             return Ok("updated successfully");
         }
@@ -73,9 +96,12 @@ namespace MongoDotnetDemo.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
+            // get the user by registration number
             var agent = await _travelAgentService.GetByAgentIdAsync(id);
             if (agent == null)
                 return NotFound();
+
+            // delete the user account
             await _travelAgentService.DeleteAsync(id);
             return Ok("deleted successfully");
         }
@@ -101,7 +127,7 @@ namespace MongoDotnetDemo.Controllers
                     // Password is correct; proceed with login
                     // Return a success response
                     //Console.WriteLine("Login successful");
-                    return Ok(new { Message = "Login successful", Data = agent }); // TODO: return a token or user information here
+                    return Ok(new { Message = "Login successful", Data = agent }); // return a token or user information
                 }
             }
 
