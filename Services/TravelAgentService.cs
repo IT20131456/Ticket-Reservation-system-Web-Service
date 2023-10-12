@@ -1,10 +1,8 @@
 ﻿// ----------------------------------------------------------------------------
 // File: TravelAgentService.cs
 // Author: IT20125202
-// Created: 2023-10-09
-// Description: This file defines the TravelAgentService class, which implements the ITravelAgentService
-// interface. It provides methods for interacting with travel agent-related data in the MongoDB database.
-// The class handles tasks such as retrieving travel agents, creating, updating, and deleting agent records.
+// Description: Defines the TravelAgentService class, which implements the ITravelAgentService interface. 
+//              Provides methods for interacting with travel agent-related data in the database.
 // ----------------------------------------------------------------------------
 
 using Microsoft.Extensions.Options;

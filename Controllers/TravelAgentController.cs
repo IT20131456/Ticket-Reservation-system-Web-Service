@@ -1,10 +1,8 @@
 ﻿// ----------------------------------------------------------------------------
 // File: TravelAgentController.cs
 // Author: IT20125202
-// Created: 2023-10-09
-// Description: This file contains the implementation of the TravelAgentController class,
-// which handles travel agent-related operations such as listing travel agents, adding new agents,
-// updating agent information, deleting agents, and handling agent login.
+// Description: Controller class to handle travel agent-related operations such as listing travel agents, adding new agents,
+//              updating agent information, deleting agents, and handling agent login.
 // Version: 1.0.0
 // Route: /api/TravelAgent
 // ----------------------------------------------------------------------------

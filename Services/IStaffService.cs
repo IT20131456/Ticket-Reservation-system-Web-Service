@@ -1,10 +1,8 @@
 ﻿// ----------------------------------------------------------------------------
 // File: IStaffService.cs
 // Author: IT20125202
-// Created: 2023-10-09
-// Description: This file defines the IStaffService interface, which specifies the contract
-// for interacting with staff-related data and operations. Implementations of this interface
-// provide methods for retrieving staff members, creating, updating, and deleting staff records.
+// Description: Defines the IStaffService interface, which specifies the contract for interacting with staff-related data and operations. 
+//              Provide methods for retrieving staff members, creating, updating, and deleting staff records.
 // ----------------------------------------------------------------------------
 
 using MongoDB.Driver;

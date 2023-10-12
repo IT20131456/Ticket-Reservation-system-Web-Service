@@ -1,10 +1,7 @@
 // ----------------------------------------------------------------------------
 // File: LoginRequest.cs
 // Author: IT20125202
-// Created: 2023-10-09
-// Description: This file defines the LoginRequest class, which represents the structure
-// of a request object used for user login. It contains properties for user identification (Id)
-// and password (Password).
+// Description: Class to represent the structure of a request object used for user login. 
 // ----------------------------------------------------------------------------
 
 namespace MongoDotnetDemo.Models {

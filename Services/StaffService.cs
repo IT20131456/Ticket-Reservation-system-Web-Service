@@ -1,10 +1,8 @@
 ﻿// ----------------------------------------------------------------------------
 // File: StaffService.cs
 // Author: IT20125202
-// Created: 2023-10-09
-// Description: This file defines the StaffService class, which implements the IStaffService
-// interface. It provides methods for interacting with staff-related data in the MongoDB database.
-// The class handles tasks such as retrieving staff members, creating, updating, and deleting staff records.
+// Description: Defines the StaffService class, which implements the IStaffService interface. 
+//              Provides methods for interacting with staff-related data in the database.
 // ----------------------------------------------------------------------------
 
 using Microsoft.Extensions.Options;
