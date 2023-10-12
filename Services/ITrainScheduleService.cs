@@ -12,5 +12,6 @@ namespace MongoDotnetDemo.Services
         Task CreateAsync(TrainSchedule trainSchedule);
         Task UpdateAsync(string id, TrainSchedule trainSchedule);
         Task DeleteAsync(string id);
+        Task<TrainSchedule> GetByTrainNoAsync(string id);
     }
 }
