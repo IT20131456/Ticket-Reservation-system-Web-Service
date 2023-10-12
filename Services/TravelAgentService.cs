@@ -36,7 +36,7 @@ namespace MongoDotnetDemo.Services
             await _travelAgentCollection.Find(a => a.RegNo == regNo).FirstOrDefaultAsync();
 
         // Retrieve a travel agent by their username asynchronously.
-        public async Task<Staff> GetByUsernameAsync(string username)
+        public async Task<TravelAgent> GetByUsernameAsync(string username)
         {
             return await _travelAgentCollection.Find(a => a.UserName == username).FirstOrDefaultAsync();
         }
