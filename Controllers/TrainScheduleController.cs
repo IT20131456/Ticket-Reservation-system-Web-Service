@@ -69,5 +69,17 @@ namespace MongoDotnetDemo.Controllers
             await _trainScheduleService.DeleteAsync(id);
             return Ok("Deleted successfully");
         }
+
+        // GET api/TrainSchedule/tno/5
+        [HttpGet("tno/{id}")]
+        public async Task<IActionResult> GetByTrainNo(string id)
+        {
+            var trainSchedule = await _trainScheduleService.GetByTrainNoAsync(id);
+            if (trainSchedule == null)
+            {
+                return NotFound();
+            }
+            return Ok(trainSchedule);
+        }
     }
 }
