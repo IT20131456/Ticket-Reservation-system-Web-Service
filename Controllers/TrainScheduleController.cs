@@ -1,3 +1,15 @@
+/**
+ * Filename: TrainScheduleController.cs
+ * Author: IT20127046 
+ * Modified By: IT20127046
+ * Description: This controller class handles HTTP requests for TrainSchedule objects.
+ *              It implements GET, POST, PUT and DELETE methods for TrainSchedule objects.
+ *              The controller uses ITrainScheduleService to interact with the database.
+ */
+/**
+ 
+*/
+
 using Microsoft.AspNetCore.Mvc;
 using MongoDotnetDemo.Models;
 using MongoDotnetDemo.Services;
