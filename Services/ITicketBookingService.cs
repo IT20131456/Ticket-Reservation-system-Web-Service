@@ -2,8 +2,11 @@
  * Filename: ITicketBookingService.cs
  * Author: IT20131456 
  * Modified By: IT20125202, IT20128036
- * Description: Interface defining contract for ticket booking operations.
+ * Description: Interface defining the contract for ticket booking operations in the Ticket Booking API.
+ *              Contains methods for retrieving, creating, updating, and deleting ticket booking records.
+ *              Additional methods for retrieving bookings by reference ID and booking history are defined.
  */
+
 
 using System.Collections.Generic;
 using System.Threading.Tasks;

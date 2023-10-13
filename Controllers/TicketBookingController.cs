@@ -2,7 +2,9 @@
  * Filename: TicketBookingController.cs
  * Author: IT20131456 
  * Modified By: IT20125202, IT20128036
- * Description: Controller class for handling ticket booking operations.
+ * Description: Controller class for handling ticket booking operations in the Ticket Booking API.
+ *              Provides endpoints for retrieving, creating, updating, and deleting ticket booking records.
+ *              Additional endpoints for retrieving bookings by NIC and booking history are also implemented.
  */
 
 using Microsoft.AspNetCore.Mvc;
