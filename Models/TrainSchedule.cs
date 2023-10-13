@@ -1,3 +1,10 @@
+/*
+ * Filename: TrainSchedule.cs
+ * Author: IT20127046 
+ * Description: Model class representing a TrainSchedule in the TrainSchedule API.
+ *              Defines the structure of a TrainSchedule including train details, train schedule.
+ */
+
 using System.ComponentModel.DataAnnotations;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;

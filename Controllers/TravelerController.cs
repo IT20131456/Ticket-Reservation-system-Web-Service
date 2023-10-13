@@ -120,7 +120,6 @@ namespace MongoDotnetDemo.Controllers
             // Retrieve the agent by RegNo from MongoDB
             var agent = await _travelerService.GetByTravelerIdAsync(NIC);
 
-            //Console.WriteLine("Login request agent agent " + agent);
 
             // Check if a agent with the given agent Reg No was found
             if (agent != null)
@@ -131,7 +130,7 @@ namespace MongoDotnetDemo.Controllers
                     // Password is correct; proceed with login
                     // Return a success response
                     //Console.WriteLine("Login successful");
-                    return Ok(new { Message = "Login successful", Data = agent }); // TODO: return a token or user information here
+                    return Ok(new { Message = "Login successful", Data = agent });
                 }
             }
 
