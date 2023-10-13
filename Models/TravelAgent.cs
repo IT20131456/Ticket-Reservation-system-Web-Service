@@ -1,3 +1,11 @@
+// ----------------------------------------------------------------------------
+// File: TravelAgent.cs
+// Author: IT20125202
+// Description: Class to represent the structure of a travel agent in the system. It contains properties for unique identifiers (RegNo, NIC),
+//              personal information (Name, Email, MobileNumber), and user credentials (UserName, HashedPassword).
+//              Provides methods to hash and verify passwords.
+// ----------------------------------------------------------------------------
+
 using MongoDB.Bson;
 using BCryptNet = BCrypt.Net.BCrypt;
 

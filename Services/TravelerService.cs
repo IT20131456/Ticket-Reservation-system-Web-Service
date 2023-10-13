@@ -29,6 +29,9 @@ namespace MongoDotnetDemo.Services
         public async Task<Traveler> GetById(string id) =>
             await _travelerCollection.Find(a => a.Id == id).FirstOrDefaultAsync();
 
+        public async Task<Traveler> GetByTravelerIdAsync(string NIC) =>
+            await _travelerCollection.Find(a => a.NIC == NIC).FirstOrDefaultAsync();
+
         public async Task CreateAsync(Traveler Traveler) =>
 
             await _travelerCollection.InsertOneAsync(Traveler);

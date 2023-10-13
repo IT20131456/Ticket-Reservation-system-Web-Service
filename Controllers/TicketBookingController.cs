@@ -1,5 +1,7 @@
 /*
  * Filename: TicketBookingController.cs
+ * Author: IT20131456 
+ * Modified By: IT20125202, IT20128036
  * Description: Controller class for handling ticket booking operations.
  */
 
@@ -27,7 +29,7 @@ namespace MongoDotnetDemo.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TicketBooking>>> Get()
         {
-            var ticketBookings = await _ticketBookingService.GetAllAsync();           
+            var ticketBookings = await _ticketBookingService.GetAllAsync();
             return Ok(ticketBookings);
         }
 
@@ -35,8 +37,8 @@ namespace MongoDotnetDemo.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<TicketBooking>> Get(string id)
         {
-           
-            var ticketBooking = await _ticketBookingService.GetById(id);           
+
+            var ticketBooking = await _ticketBookingService.GetById(id);
             if (ticketBooking == null)
             {
                 return NotFound();
@@ -49,8 +51,8 @@ namespace MongoDotnetDemo.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(TicketBooking ticketBooking)
         {
-          
-            await _ticketBookingService.CreateAsync(ticketBooking);          
+
+            await _ticketBookingService.CreateAsync(ticketBooking);
             return Ok("Ticket booking created successfully");
         }
 
@@ -58,13 +60,13 @@ namespace MongoDotnetDemo.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(string id, TicketBooking newTicketBooking)
         {
-           
+
             var ticketBooking = await _ticketBookingService.GetById(id);
             if (ticketBooking == null)
                 return NotFound();
-           
+
             await _ticketBookingService.UpdateAsync(id, newTicketBooking);
-          
+
             return Ok("Ticket booking updated successfully");
         }
 
@@ -72,14 +74,41 @@ namespace MongoDotnetDemo.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
-            
-            var ticketBooking = await _ticketBookingService.GetById(id);        
+
+            var ticketBooking = await _ticketBookingService.GetById(id);
             if (ticketBooking == null)
                 return NotFound();
-           
+
             await _ticketBookingService.DeleteAsync(id);
 
             return Ok("Ticket booking deleted successfully");
         }
+
+
+
+        // GET: api/TicketBooking/{nic}
+        [HttpGet("nic/{nic}")]
+        public async Task<ActionResult<IEnumerable<TicketBooking>>> GetByNic(string nic)
+        {
+            var ticketBookings = await _ticketBookingService.GetByReferenceIdAsync(nic);
+            return Ok(ticketBookings);
+        }
+
+
+        // GET: api/TicketBooking/History/{nic}
+        [HttpGet("History/{nic}")]
+        public async Task<ActionResult<IEnumerable<TicketBooking>>> GetByNIC(string nic)
+        {
+           
+            var ticketBookings = await _ticketBookingService.GetAllByRefId(nic);   
+       
+            if (ticketBookings == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(ticketBookings);
+        }
+
     }
 }

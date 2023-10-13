@@ -1,5 +1,7 @@
 /*
  * Filename: ITicketBookingService.cs
+ * Author: IT20131456 
+ * Modified By: IT20125202, IT20128036
  * Description: Interface defining contract for ticket booking operations.
  */
 
@@ -25,5 +27,12 @@ namespace MongoDotnetDemo.Services
 
         // Deletes a ticket booking by its unique identifier asynchronously.
         Task DeleteAsync(string id);
+
+
+        Task<IEnumerable<TicketBooking>> GetByReferenceIdAsync(string referenceId);
+
+        // Retrieves a specific ticket booking by its unique identifier asynchronously.
+        Task<IEnumerable<TicketBooking>> GetAllByRefId(string nic);
+
     }
 }

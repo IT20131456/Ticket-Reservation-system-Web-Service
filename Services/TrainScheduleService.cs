@@ -35,5 +35,9 @@ namespace MongoDotnetDemo.Services
 
         public async Task DeleteAsync(string id) =>
             await _trainScheduleCollection.DeleteOneAsync(schedule => schedule.Id == id);
+
+        public async Task<TrainSchedule> GetByTrainNoAsync(string id) =>
+            await _trainScheduleCollection.Find(a => a.train_number == id).FirstOrDefaultAsync();
+
     }
 }
