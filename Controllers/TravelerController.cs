@@ -111,8 +111,8 @@ namespace MongoDotnetDemo.Controllers
             // access loginRequest.Id and loginRequest.Password
             string NIC = loginRequest.Id;
             string password = loginRequest.Password;
-            //Console.WriteLine("Login request received for " + NIC);
-            //Console.WriteLine("Login request received for " + password);
+            Console.WriteLine("Login request received for " + NIC);
+            Console.WriteLine("Login request received for " + password);
 
             // Retrieve the agent by RegNo from MongoDB
             var agent = await _travelerService.GetByTravelerIdAsync(NIC);
@@ -183,54 +183,50 @@ namespace MongoDotnetDemo.Controllers
 
 
 
-        // PUT api/traveler/nic/{nic}
         [HttpPut("nic/{nic}")]
-        public async Task<IActionResult> PutByN(string nic, [FromBody] Traveler updatedTraveler)
+        public async Task<IActionResult> PutByNIC(string nic, [FromBody] Traveler updatedTraveler)
         {
+            // Validate the incoming data
+            if (string.IsNullOrEmpty(nic) || updatedTraveler == null)
+            {
+                return BadRequest("Invalid input.");
+            }
+
+            // Retrieve the existing traveler
             var traveler = await _travelerService.GetByNIC(nic);
             if (traveler == null)
+            {
                 return NotFound();
+            }
 
-            // Update specific fields of the traveler
-            if (!string.IsNullOrEmpty(updatedTraveler.NIC))
+            try
+            {
+                // Update the traveler's properties
+                // You can safely update all properties without checking for emptiness
                 traveler.NIC = updatedTraveler.NIC;
-
-            if (!string.IsNullOrEmpty(updatedTraveler.FullName))
                 traveler.FullName = updatedTraveler.FullName;
-
-            if (!string.IsNullOrEmpty(updatedTraveler.DOB))
                 traveler.DOB = updatedTraveler.DOB;
-
-            if (!string.IsNullOrEmpty(updatedTraveler.Gender))
                 traveler.Gender = updatedTraveler.Gender;
-
-            if (!string.IsNullOrEmpty(updatedTraveler.Contact))
                 traveler.Contact = updatedTraveler.Contact;
-
-            if (!string.IsNullOrEmpty(updatedTraveler.Email))
                 traveler.Email = updatedTraveler.Email;
-
-            if (!string.IsNullOrEmpty(updatedTraveler.Address))
                 traveler.Address = updatedTraveler.Address;
-
-            if (!string.IsNullOrEmpty(updatedTraveler.Username))
                 traveler.Username = updatedTraveler.Username;
-
-            if (!string.IsNullOrEmpty(updatedTraveler.Profile))
                 traveler.Profile = updatedTraveler.Profile;
-
-            if (!string.IsNullOrEmpty(updatedTraveler.TravelerType))
                 traveler.TravelerType = updatedTraveler.TravelerType;
-
-            if (!string.IsNullOrEmpty(updatedTraveler.AccountStatus))
                 traveler.AccountStatus = updatedTraveler.AccountStatus;
-
-            if (!string.IsNullOrEmpty(updatedTraveler.CreatedAt))
                 traveler.CreatedAt = updatedTraveler.CreatedAt;
 
-
-            await _travelerService.UpdateAsyncN(traveler);
-            return Ok("Updated successfully");
+                // Update the traveler in the database
+                await _travelerService.UpdateByNicRequirdOnly(nic, traveler);
+                return Ok(new { Message = "Updated successfully" });
+            }
+            catch (Exception ex)
+            {
+                // Handle any unexpected errors
+                // Consider logging the exception
+                return StatusCode(500, "An error occurred during the update.");
+            }
         }
+
     }
 }

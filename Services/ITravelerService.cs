@@ -15,5 +15,6 @@ namespace MongoDotnetDemo.Services
         Task DeleteByNIC(string nic);
         Task UpdateByNic(string nic, Traveler traveler);
         Task UpdateAsyncN(Traveler traveler);
+        Task UpdateByNicRequirdOnly(string nic, Traveler traveler);
     }
 }
