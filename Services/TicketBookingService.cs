@@ -1,7 +1,11 @@
 /*
  * Filename: TicketBookingService.cs
- * Description: Service class for managing ticket bookings in a MongoDB database.
+ * Author: IT20131456 
+ * Modified By: IT20125202, IT20128036
+ * Description: Service class responsible for managing ticket bookings in a MongoDB database.
+ *              Implements ITicketBookingService interface and provides methods for retrieving, creating, updating, and deleting ticket booking records.
  */
+
 
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;

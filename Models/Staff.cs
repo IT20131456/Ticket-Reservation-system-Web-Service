@@ -1,4 +1,12 @@
-﻿using MongoDB.Bson;
+﻿// ----------------------------------------------------------------------------
+// File: Staff.cs
+// Author: IT20125202
+// Description: Class to represent the structure of a staff member in the system. It contains properties for unique identifiers (StaffId, NIC),
+//              personal information (Name, Email, MobileNumber), user credentials (UserName, HashedPassword), and admin privileges (IsAdmin). 
+//              Provides methods to hash and verify passwords.
+// ----------------------------------------------------------------------------
+
+using MongoDB.Bson;
 using BCryptNet = BCrypt.Net.BCrypt;
 
 namespace MongoDotnetDemo.Models

@@ -1,3 +1,10 @@
+/*
+ * Filename: TicketBooking.cs
+ * Author: IT20131456 
+ * Description: Model class representing a ticket booking in the Ticket Booking API.
+ *              Defines the structure of a ticket booking including reservation details, train information, and pricing.
+ */
+ 
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
 using System;
