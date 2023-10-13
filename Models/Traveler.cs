@@ -1,3 +1,11 @@
+/*
+ * Filename: Traveler.cs
+ * Author: IT20128036 
+ * Description: Model class representing a traveler in the Traveler API.
+    *           Defines the structure of a traveler including personal details, account information, and profile information.
+ *             
+ */
+
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
 
@@ -19,7 +27,6 @@ namespace MongoDotnetDemo.Models
         public string? Username { get; set; } 
         public string? PasswordHash { get; set; }
 
-
         public string? Profile { get; set; }
         public string? TravelerType { get; set; }
         public string? AccountStatus { get; set; }
@@ -27,17 +34,13 @@ namespace MongoDotnetDemo.Models
         public string? CreatedAt { get; set; }
 
 
-        // Hash and set the password when saving a new traveler
+    // Hash and set the password when saving a new traveler
     public void SetPassword(string password)
     {
         // Generate a salt and hash the password
         string salt = BCrypt.Net.BCrypt.GenerateSalt(12);
         PasswordHash = BCrypt.Net.BCrypt.HashPassword(password, salt);
     }
-
-    
-
-
 
     // Verify a password during login
     public bool VerifyPassword(string password)
