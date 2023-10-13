@@ -1,3 +1,12 @@
+/*
+ * Filename: TravelerController.cs
+ * Author: IT20128036
+* Modified By: IT20127046
+ * Description: Controller class for handling traveler operations in the Traveler API.
+    *              Provides endpoints for retrieving, creating, updating, and deleting traveler records.
+    *              Additional endpoints for retrieving, deleting, and updating travelers by NIC are also implemented.
+ */
+
 using Microsoft.AspNetCore.Mvc;
 using MongoDotnetDemo.Models;
 using MongoDotnetDemo.Services;
@@ -33,7 +42,7 @@ namespace MongoDotnetDemo.Controllers
             return Ok(traveler);
         }
 
-        // GET api/TravelerController/5
+        // GET api/traveler/556765456V
         [HttpGet("getbyNIC/{id}")]
         public async Task<IActionResult> GetById(string id)
         {
@@ -47,7 +56,6 @@ namespace MongoDotnetDemo.Controllers
 
 
         // POST api/traveler
-
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Traveler traveler)
         {
@@ -76,11 +84,6 @@ namespace MongoDotnetDemo.Controllers
             return Ok(new { StatusCode = "created successfully" });
         }
 
-
-
-
-
-
         // PUT api/traveler/652231bdc0273fd1118a104f
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(string id, [FromBody] Traveler newTraveler)
@@ -104,7 +107,7 @@ namespace MongoDotnetDemo.Controllers
         }
 
 
-        // POST api/Traveler/login
+        // POST api/traveler/login
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest loginRequest)
         {
@@ -137,8 +140,8 @@ namespace MongoDotnetDemo.Controllers
             return Unauthorized("Authentication failed");
         }
 
-        // GET api/traveler/654567567V
 
+        // GET api/traveler/654567567V
         [HttpGet("nic/{nic}")]
         public async Task<IActionResult> GetByNICS(string nic)
         {
@@ -181,8 +184,6 @@ namespace MongoDotnetDemo.Controllers
             return Ok("Updated successfully");
         }
 
-
-
         [HttpPut("nic/{nic}")]
         public async Task<IActionResult> PutByNIC(string nic, [FromBody] Traveler updatedTraveler)
         {
@@ -202,7 +203,6 @@ namespace MongoDotnetDemo.Controllers
             try
             {
                 // Update the traveler's properties
-                // You can safely update all properties without checking for emptiness
                 traveler.NIC = updatedTraveler.NIC;
                 traveler.FullName = updatedTraveler.FullName;
                 traveler.DOB = updatedTraveler.DOB;
