@@ -35,6 +35,8 @@ namespace MongoDotnetDemo.Models
 
         public List<string>? number_of_seats { get; set; }
 
+        public int? isActive { get; set; }
+
     }
 
 }

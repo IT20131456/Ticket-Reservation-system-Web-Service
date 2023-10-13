@@ -78,6 +78,22 @@ namespace MongoDotnetDemo.Services
             await _travelerCollection.ReplaceOneAsync(filter, traveler);
         }
 
+        public async Task UpdateByNicRequirdOnly(string nic, Traveler traveler)
+        {
+            var filter = Builders<Traveler>.Filter.Eq(t => t.NIC, nic);
+            var update = Builders<Traveler>.Update
+                .Set(t => t.FullName, traveler.FullName)
+                .Set(t => t.Contact, traveler.Contact)
+                .Set(t => t.Email, traveler.Email)
+                .Set(t => t.Address, traveler.Address)
+                .Set(t => t.AccountStatus, traveler.AccountStatus);
 
+            var result = await _travelerCollection.UpdateOneAsync(filter, update);
+
+            if (result.ModifiedCount == 0)
+            {
+                // Handle the case where no document was updated
+            }
+        }
     }
 }
