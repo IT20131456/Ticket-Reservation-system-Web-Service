@@ -1,33 +1,9 @@
-// var builder = WebApplication.CreateBuilder(args);
-
-// // Add services to the container.
-
-// builder.Services.AddControllers();
-// // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-// builder.Services.AddEndpointsApiExplorer();
-// builder.Services.AddSwaggerGen();
-
-// var app = builder.Build();
-
-// // Configure the HTTP request pipeline.
-// if (app.Environment.IsDevelopment())
-// {
-//     app.UseSwagger();
-//     app.UseSwaggerUI();
-// }
-
-// app.UseHttpsRedirection();
-
-// app.UseAuthorization();
-
-// app.MapControllers();
-
-// app.Run();
-
-
-
-
-
+/**
+ * Filename: Startup.cs
+ * Author: IT20131456,IT20128036,IT20127046,IT20125202
+ * Description: Configures services and the HTTP request pipeline for the ASP.NET Core application.
+ *              Sets up CORS, Swagger/OpenAPI documentation, and resolves service dependencies.
+ */
 using MongoDotnetDemo.Models;
 using MongoDotnetDemo.Services;
 
@@ -44,10 +20,6 @@ builder.Services.AddCors(options =>
                .AllowAnyHeader();
     });
 });
-
-
-
-
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
